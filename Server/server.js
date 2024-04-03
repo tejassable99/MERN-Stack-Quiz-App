@@ -17,34 +17,37 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     exposedHeaders: ['Content-Length'],
-  }));
-  
+}));
+
 app.use(express.json());
 config();
 
-/** appliation port */
+/** application port */
 const port = process.env.PORT || 8080;
 
 /** routes */
 app.use('/api', router);
 
 app.get('/', (req, res) => {
-  try {
-    res.json("Get Request")
-  } catch (error) {
-    res.json(error)
-  }
+    try {
+        res.json("Get Request")
+    } catch (error) {
+        res.json(error)
+    }
 });
 
-/** start server only when we have valid connection */
+/** handle CORS preflight requests */
+app.options('*', cors());
+
+/** start server only when we have a valid connection */
 connect().then(() => {
-  try {
-    app.listen(port, () => {
-      console.log(`Server connected to http://localhost:${port}`)
-    })
-  } catch (error) {
-    console.log("Cannot connect to the server");
-  }
+    try {
+        app.listen(port, () => {
+            console.log(`Server connected to http://localhost:${port}`)
+        })
+    } catch (error) {
+        console.log("Cannot connect to the server");
+    }
 }).catch(error => {
-  console.log("Invalid Database Connection");
+    console.log("Invalid Database Connection");
 });
