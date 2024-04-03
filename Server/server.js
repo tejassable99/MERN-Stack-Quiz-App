@@ -12,9 +12,13 @@ const app = express();
 /** app middlewares */
 app.use(morgan('tiny'));
 app.use(cors({
-  origin: 'https://mern-stack-quiz-app-9vvc-git-main-tejas-projects-c8790610.vercel.app',
-}));
-
+    origin: 'https://mern-stack-quiz-app-9vvc-git-main-tejas-projects-c8790610.vercel.app',
+    methods: ['GET', 'POST', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    exposedHeaders: ['Content-Length'],
+  }));
+  
 app.use(express.json());
 config();
 
