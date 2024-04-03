@@ -4,27 +4,22 @@ import cors from 'cors';
 import { config } from 'dotenv';
 import router from './router/route.js';
 
-
 /** import connection file */
 import connect from './database/conn.js';
 
 const app = express()
 
-
 /** app middlewares */
 app.use(morgan('tiny'));
-app.use(cors({origin:'https://mern-stack-quiz-app-njrq.vercel.app/'}));
+app.use(cors({origin: 'https://mern-stack-quiz-app-njrq.vercel.app'})); // Specify the origin that is allowed to access your server
 app.use(express.json());
 config();
 
-
-/** appliation port */
+/** application port */
 const port = process.env.PORT || 8080;
 
-
 /** routes */
-app.use('/api', router) /** apis */
-
+app.use('/api', router); /** apis */
 
 app.get('/', (req, res) => {
     try {
@@ -34,8 +29,7 @@ app.get('/', (req, res) => {
     }
 })
 
-
-/** start server only when we have valid connection */
+/** start server only when we have a valid connection */
 connect().then(() => {
     try {
         app.listen(port, () => {
@@ -47,4 +41,3 @@ connect().then(() => {
 }).catch(error => {
     console.log("Invalid Database Connection");
 })
-
