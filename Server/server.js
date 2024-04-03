@@ -11,7 +11,7 @@ const app = express()
 
 /** app middlewares */
 app.use(morgan('tiny'));
-app.use(cors({origin: 'https://mern-stack-quiz-app-njrq.vercel.app'})); // Specify the origin that is allowed to access your server
+app.use(cors({origin: 'https://mern-stack-quiz-app-njrq-git-main-tejas-projects-c8790610.vercel.app/'})); // Specify the origin that is allowed to access your server
 app.use(express.json());
 config();
 
