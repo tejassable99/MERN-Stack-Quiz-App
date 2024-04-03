@@ -7,19 +7,21 @@ import router from './router/route.js';
 /** import connection file */
 import connect from './database/conn.js';
 
-const app = express()
+const app = express();
 
 /** app middlewares */
 app.use(morgan('tiny'));
-app.use(cors({origin: 'https://mern-stack-quiz-app-njrq-git-main-tejas-projects-c8790610.vercel.app/'})); // Specify the origin that is allowed to access your server
+app.use(cors({
+  origin: 'https://mern-stack-quiz-app-njrq-git-main-tejas-projects-c8790610.vercel.app',
+}));
 app.use(express.json());
 config();
 
-/** application port */
+/** appliation port */
 const port = process.env.PORT || 8080;
 
 /** routes */
-app.use('/api', router); /** apis */
+app.use('/api', router);
 
 app.get('/', (req, res) => {
     try {
@@ -27,9 +29,9 @@ app.get('/', (req, res) => {
     } catch (error) {
         res.json(error)
     }
-})
+});
 
-/** start server only when we have a valid connection */
+/** start server only when we have valid connection */
 connect().then(() => {
     try {
         app.listen(port, () => {
@@ -40,4 +42,4 @@ connect().then(() => {
     }
 }).catch(error => {
     console.log("Invalid Database Connection");
-})
+});
