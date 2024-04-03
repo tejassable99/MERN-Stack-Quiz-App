@@ -15,39 +15,35 @@ app.use(cors({
     origin: 'https://mern-stack-quiz-app-9vvc-git-main-tejas-projects-c8790610.vercel.app',
     methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    exposedHeaders: ['Content-Length'],
-}));
-
+  }));
+  
+  
 app.use(express.json());
 config();
 
-/** application port */
+/** appliation port */
 const port = process.env.PORT || 8080;
 
 /** routes */
 app.use('/api', router);
 
 app.get('/', (req, res) => {
-    try {
-        res.json("Get Request")
-    } catch (error) {
-        res.json(error)
-    }
+  try {
+    res.json("Get Request")
+  } catch (error) {
+    res.json(error)
+  }
 });
 
-/** handle CORS preflight requests */
-app.options('*', cors());
-
-/** start server only when we have a valid connection */
+/** start server only when we have valid connection */
 connect().then(() => {
-    try {
-        app.listen(port, () => {
-            console.log(`Server connected to http://localhost:${port}`)
-        })
-    } catch (error) {
-        console.log("Cannot connect to the server");
-    }
+  try {
+    app.listen(port, () => {
+      console.log(`Server connected to http://localhost:${port}`)
+    })
+  } catch (error) {
+    console.log("Cannot connect to the server");
+  }
 }).catch(error => {
-    console.log("Invalid Database Connection");
+  console.log("Invalid Database Connection");
 });
