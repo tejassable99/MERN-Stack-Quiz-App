@@ -12,7 +12,7 @@ const app = express();
 /** app middlewares */
 app.use(morgan('tiny'));
 app.use(cors({
-  origin: 'https://mern-stack-quiz-app-ndh1-qmusojfn7-tejas-projects-c8790610.vercel.app/quiz',
+  origin: 'https://mern-stack-quiz-app-ndh1-git-main-tejas-projects-c8790610.vercel.app/',
 }));
 app.use(express.json());
 config();
